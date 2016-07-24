@@ -1,0 +1,2 @@
+to see the api you're exporting:
+	https://myworld-api.appspot.com/_ah/api/explorer
