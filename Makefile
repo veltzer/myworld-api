@@ -1,8 +1,10 @@
+TOOLS:=tools.stamp
+
 .PHONY: all
-all: tools.stamp
+all: $(TOOLS)
 	@true
 
-tools.stamp: config/deps.py
+$(TOOLS): packages.txt config/deps.py
 	$(info doing [$@])
 	@pymakehelper touch_mkdir $@
 

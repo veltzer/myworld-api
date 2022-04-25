@@ -1,5 +1,4 @@
-# tools stamp
-/tools.stamp
+*.stamp
 # python related
 __pycache__
 *.pyo
