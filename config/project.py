@@ -1,3 +1,8 @@
 name = "myworld-api"
 description_short = "myworld system as API"
-keywords = []
+keywords = [
+    "myworld",
+    "mark-veltzer",
+    "web",
+    "api",
+]
