@@ -13,7 +13,7 @@
 # limitations under the License.
 
 import main
-import mock
+from unittest import mock
 from protorpc import message_types
 
 

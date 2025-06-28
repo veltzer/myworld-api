@@ -82,7 +82,7 @@ class GreetingApi(remote.Service):
             return STORED_GREETINGS.items[request.id]
         except (IndexError, TypeError):
             raise endpoints.NotFoundException(
-                'Greeting {} not found'.format(request.id))
+                f'Greeting {request.id} not found')
     # [END greeting_api]
 
     # [START multiply]
@@ -140,7 +140,7 @@ class AuthedGreetingApi(remote.Service):
     def greet(self, request):
         user = endpoints.get_current_user()
         user_name = user.email() if user else 'Anonymous'
-        return Greeting(message='Hello, {}'.format(user_name))
+        return Greeting(message=f'Hello, {user_name}')
 # [END authed_greeting_api]
 
 
