@@ -1,0 +1,15 @@
+# Generated so `uv sync` installs this repo's Python dependencies.
+# Derived from the third-party imports found in the repo's .py files.
+
+[project]
+name = "myworld-api"
+version = "0.0.0"
+requires-python = ">=3.12"
+dependencies = [
+    "protorpc",
+]
+
+[tool.uv]
+# Demo/teaching/archive repo: not an installable package.
+package = false
+
