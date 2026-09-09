@@ -16,3 +16,4 @@ src_files = ["README.md"]
 
 [processor.yamllint]
 src_files = ["app.yaml"]
+src_dirs = [".github"]
