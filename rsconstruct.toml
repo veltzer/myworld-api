@@ -30,3 +30,7 @@ src_files = ["README.md"]
 [processor.checker.iyamllint]
 src_files = ["app.yaml", ".yamllint.yaml"]
 src_dirs = [".github"]
+
+# lint the Lua configuration with luacheck (policy: .luacheckrc)
+[processor.checker.iluacheck]
+src_dirs = ["config"]
