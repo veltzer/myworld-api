@@ -28,5 +28,5 @@ src_files = ["README.md"]
 # ─── yaml ────────────────────────────────────────────────────────────────────
 
 [processor.checker.iyamllint]
-src_files = ["app.yaml"]
+src_files = ["app.yaml", ".yamllint.yaml"]
 src_dirs = [".github"]
