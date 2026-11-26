@@ -12,25 +12,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import main
 from unittest import mock
+
+import pytest
 from protorpc import message_types
 
+import main
 
-def test_list_greetings(testbed):
+
+@pytest.mark.usefixtures("testbed")
+def test_list_greetings():
     api = main.GreetingApi()
     response = api.list_greetings(message_types.VoidMessage())
     assert len(response.items) == 2
 
 
-def test_get_greeting(testbed):
+@pytest.mark.usefixtures("testbed")
+def test_get_greeting():
     api = main.GreetingApi()
     request = main.GreetingApi.get_greeting.remote.request_type(id=1)
     response = api.get_greeting(request)
     assert response.message == 'goodbye world!'
 
 
-def test_multiply_greeting(testbed):
+@pytest.mark.usefixtures("testbed")
+def test_multiply_greeting():
     api = main.GreetingApi()
     request = main.GreetingApi.multiply_greeting.remote.request_type(
         times=4,
@@ -39,7 +45,8 @@ def test_multiply_greeting(testbed):
     assert response.message == 'help I\'m trapped in a test case.' * 4
 
 
-def test_authed_greet(testbed):
+@pytest.mark.usefixtures("testbed")
+def test_authed_greet():
     api = main.AuthedGreetingApi()
 
     with mock.patch('main.endpoints.get_current_user') as user_mock:

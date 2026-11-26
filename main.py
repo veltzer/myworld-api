@@ -17,9 +17,8 @@ Endpoints."""
 
 # [START imports]
 import endpoints
-from protorpc import message_types
-from protorpc import messages
-from protorpc import remote
+from protorpc import message_types, messages, remote
+
 # [END imports]
 
 
@@ -53,7 +52,7 @@ class GreetingApi(remote.Service):
         path='greetings',
         http_method='GET',
         name='greetings.list')
-    def list_greetings(self, unused_request):
+    def list_greetings(self, _request):
         return STORED_GREETINGS
 
     # ResourceContainers are used to encapsuate a request body and url
@@ -79,10 +78,10 @@ class GreetingApi(remote.Service):
     def get_greeting(self, request):
         try:
             # request.id is used to access the URL parameter.
-            return STORED_GREETINGS.items[request.id]
+            return (STORED_GREETINGS.items or [])[request.id]
         except (IndexError, TypeError):
             raise endpoints.NotFoundException(
-                f'Greeting {request.id} not found')
+                f'Greeting {request.id} not found') from None
     # [END greeting_api]
 
     # [START multiply]
@@ -137,7 +136,7 @@ class AuthedGreetingApi(remote.Service):
         path='greet',
         http_method='POST',
         name='greet')
-    def greet(self, request):
+    def greet(self, _request):
         user = endpoints.get_current_user()
         user_name = user.email() if user else 'Anonymous'
         return Greeting(message=f'Hello, {user_name}')
