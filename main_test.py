@@ -21,14 +21,14 @@ import main
 
 
 @pytest.mark.usefixtures("testbed")
-def test_list_greetings():
+def test_list_greetings() -> None:
     api = main.GreetingApi()
     response = api.list_greetings(message_types.VoidMessage())
     assert len(response.items) == 2
 
 
 @pytest.mark.usefixtures("testbed")
-def test_get_greeting():
+def test_get_greeting() -> None:
     api = main.GreetingApi()
     request = main.GreetingApi.get_greeting.remote.request_type(id=1)
     response = api.get_greeting(request)
@@ -36,7 +36,7 @@ def test_get_greeting():
 
 
 @pytest.mark.usefixtures("testbed")
-def test_multiply_greeting():
+def test_multiply_greeting() -> None:
     api = main.GreetingApi()
     request = main.GreetingApi.multiply_greeting.remote.request_type(
         times=4,
@@ -46,7 +46,7 @@ def test_multiply_greeting():
 
 
 @pytest.mark.usefixtures("testbed")
-def test_authed_greet():
+def test_authed_greet() -> None:
     api = main.AuthedGreetingApi()
 
     with mock.patch('main.endpoints.get_current_user') as user_mock:

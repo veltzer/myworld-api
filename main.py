@@ -16,6 +16,8 @@
 Endpoints."""
 
 # [START imports]
+from typing import Any
+
 import endpoints
 from protorpc import message_types, messages, remote
 
@@ -52,7 +54,7 @@ class GreetingApi(remote.Service):
         path='greetings',
         http_method='GET',
         name='greetings.list')
-    def list_greetings(self, _request):
+    def list_greetings(self, _request) -> GreetingCollection:
         return STORED_GREETINGS
 
     # ResourceContainers are used to encapsuate a request body and url
@@ -75,7 +77,7 @@ class GreetingApi(remote.Service):
         path='greetings/{id}',
         http_method='GET',
         name='greetings.get')
-    def get_greeting(self, request):
+    def get_greeting(self, request: Any):
         try:
             # request.id is used to access the URL parameter.
             return (STORED_GREETINGS.items or [])[request.id]
@@ -102,7 +104,7 @@ class GreetingApi(remote.Service):
         path='greetings/multiply/{times}',
         http_method='POST',
         name='greetings.multiply')
-    def multiply_greeting(self, request):
+    def multiply_greeting(self, request: Any) -> Greeting:
         return Greeting(message=request.message * request.times)
     # [END multiply]
 
@@ -136,7 +138,7 @@ class AuthedGreetingApi(remote.Service):
         path='greet',
         http_method='POST',
         name='greet')
-    def greet(self, _request):
+    def greet(self, _request) -> Greeting:
         user = endpoints.get_current_user()
         user_name = user.email() if user else 'Anonymous'
         return Greeting(message=f'Hello, {user_name}')
